@@ -45,8 +45,14 @@
   </body>
   <script>
   function getConfigData() {
+      var radioList = document.getElementByName('outer-color');
+      for(var i=0; i<radioList.length; i++){
+          if (radioList[i].checked) {
+              background_color = radioList[i].value;
+              break;
+          }
     var options = {
-      'background_color': getElementByName('outer-color')
+      'background_color': background_color
     };
 
     // Save for next launch
