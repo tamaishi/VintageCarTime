@@ -85,12 +85,14 @@
   }
   function getRadioValue(radioName){
     var radioList=document.getElementsByName(radioName);
+    var returnStr='0';
     for(var i=0; i<radioList.length; i++){
         if (radioList[i].checked) {
-            retun radioList[i];
+            retunStr = radioList[i].value;
             break;
         }
-    } 
+    }
+    return returnStr;
   }
   function getQueryParam(variable, defaultValue) {
     var query = location.search.substring(1);
