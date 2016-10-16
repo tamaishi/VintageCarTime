@@ -74,8 +74,8 @@
   <script>
   function getConfigData() {
     var options = {
-      'background_color': getRaioValue(document.getElementsByName('outer-color')),
-      'car_type': getRaioValue(document.getElementsByName('car-type'))
+      'background_color': getRaioValue('outer-color'),
+      'car_type': getRaioValue('car-type')
     };
 
     // Save for next launch
@@ -85,7 +85,8 @@
     console.log('Got options: ' + JSON.stringify(options));
     return options;
   }
-  function getRadioValue(radioList){
+  function getRadioValue(radioName){
+    var radioList=document.getElementsByName(radioName);
     var returnStr='0'
     for(var i=0; i<radioList.length; i++){
         if (radioList[i].checked) {
