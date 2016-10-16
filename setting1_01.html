@@ -72,31 +72,25 @@
     </div>
   </body>
   <script>
-  function getConfigData() {
+ function getConfigData() {
     var options = {
-      'background_color': getRaioValue('outer-color'),
-      'car_type': getRaioValue('car-type')
+      'background_color': getRadioValue(document.getElementsByName('outer-color')),
+      'car_type': getRadioValue(document.getElementsByName('car-type'))
     };
-
     // Save for next launch
     localStorage['background_color'] = options['background_color'];
     
-
     console.log('Got options: ' + JSON.stringify(options));
     return options;
   }
-  function getRadioValue(radioName){
-    var radioList=document.getElementsByName(radioName);
-    var returnStr='0'
+  function getRadioValue(radioList){
     for(var i=0; i<radioList.length; i++){
         if (radioList[i].checked) {
-            returnStr = radioList[i].value;
+            retun radioList[i].value;
             break;
         }
     } 
-    return returnStr;
   }
-
   function getQueryParam(variable, defaultValue) {
     var query = location.search.substring(1);
     var vars = query.split('&');
