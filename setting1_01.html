@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <title>Slate Example Configuration</title>
+  <title>Vintage Car Time Configuration</title>
   <link rel='stylesheet' type='text/css' href='css/slate.min.css'>
   <script src='js/slate.min.js'></script>
   <style>
@@ -44,6 +44,26 @@
             This radiobutton change the speedometer back ground color.
         </div>
     </div>
+    <div class='item-container'>
+        <div class='item-container-header'>Car type</div>
+        <div class='item-container-content'>
+            <label class='item'>
+                miner
+                <input id='outer-color-black' type='radio' name='car-type' value='0' class='item-radio' checked>
+            </label>
+            <label class='item'>
+                bug
+                <input id='outer-color-white' type='radio' name='car-type' value='1' class='item-radio'>
+            </label>
+            <label class='item'>
+                toppo
+                <input id='outer-color-white' type='radio' name='car-type' value='2' class='item-radio'>
+            </label>
+        </div>
+        <div class='item-container-footer'>
+            This radiobutton change the speedometer back ground color.
+        </div>
+    </div>
 
     <div class='item-container'>
       <div class='button-container'>
@@ -53,15 +73,9 @@
   </body>
   <script>
   function getConfigData() {
-      var radioList = document.getElementsByName('outer-color');
-      for(var i=0; i<radioList.length; i++){
-          if (radioList[i].checked) {
-              background_color = radioList[i].value;
-              break;
-          }
-      }
     var options = {
-      'background_color': background_color
+      'background_color': getRaioValue(document.getElementsByName('outer-color')),
+      'car_type': getRaioValue(document.getElementsByName('car-type'))
     };
 
     // Save for next launch
@@ -70,6 +84,14 @@
 
     console.log('Got options: ' + JSON.stringify(options));
     return options;
+  }
+  function getRadioValue(radioList){
+    for(var i=0; i<radioList.length; i++){
+        if (radioList[i].checked) {
+            retun radioList[i].value;
+            break;
+        }
+    } 
   }
 
   function getQueryParam(variable, defaultValue) {
