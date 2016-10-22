@@ -14,11 +14,11 @@
     color: #888888;
     text-align: center;
   }
-  .weather-img{
+  .weather-img,.face-img{
       width:100%;
       display:none;
   }
-  #miner-img{
+  #miner-img,#outer-color-black-img{
       display:block;
   }
   </style>
@@ -32,21 +32,25 @@
         <div class='item-container-content'>
             <label class='item'>
                 Black
-                <input id='outer-color-black' type='radio' name='outer-color' value='0' class='item-radio' checked>
+                <input id='outer-color-black' type='radio' name='outer-color' value='0' class='item-radio'  onclick='changeIcon(this);' checked>
             </label>
             <label class='item'>
                 White
-                <input id='outer-color-white' type='radio' name='outer-color' value='1' class='item-radio'>
+                <input id='outer-color-white' type='radio' name='outer-color' value='1' class='item-radio' onclick='changeIcon(this);'>
             </label>
             <label class='item'>
                 Black-Silver
-                <input id='outer-color-white' type='radio' name='outer-color' value='2' class='item-radio'>
+                <input id='outer-color-black-silver' type='radio' name='outer-color' value='2' class='item-radio' onclick='changeIcon(this);'>
             </label>
             <label class='item'>
                 Black-White
-                <input id='outer-color-white' type='radio' name='outer-color' value='3' class='item-radio'>
+                <input id='outer-color-black-white' type='radio' name='outer-color' value='3' class='item-radio' onclick='changeIcon(this);'>
             </label>
         </div>
+        <img id='outer-color-black-img' src='img/roundtype1face.png' class='face-img'>
+        <img id='outer-color-white-img' src='img/roundtype2face.png' class='face-img'>
+        <img id='outer-color-black-silver-img' src='img/roundtype3face.png' class='face-img'>
+        <img id='outer-color-black-white-img' src='img/roundtype4face.png' class='face-img'>
         <div class='item-container-footer'>
             This radiobutton change the speedometer back ground color.
         </div>
@@ -117,10 +121,16 @@
     return defaultValue || false;
   }
   function changeIcon(elem){
-      document.getElementById("miner-img").style.display="none";
-      document.getElementById("eins-img").style.display="none";
-      document.getElementById("topo-img").style.display="none";
-      var carType = getRadioValue('car-type');
+      if(elem.name==='outer-color'){
+          document.getElementById('outer-color-black-img').style.display="none";
+          document.getElementById('outer-color-white-img').style.display="none";
+          document.getElementById('outer-color-black-silver-img').style.display="none";
+          document.getElementById('outer-color-black-white-img').style.display="none";
+      }else if(elem.name==='car-type'){
+        document.getElementById("miner-img").style.display="none";
+        document.getElementById("eins-img").style.display="none";
+        document.getElementById("topo-img").style.display="none";
+      }
       document.getElementById(elem.id+"-img").style.display="block";
   }
   var submitButton = document.getElementById('submit_button');
