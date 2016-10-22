@@ -14,13 +14,6 @@
     color: #888888;
     text-align: center;
   }
-  .weather-img{
-      width:100%;
-      display:none;
-  }
-  #miner-img{
-      display:block;
-  }
   </style>
   </head>
 
@@ -56,20 +49,17 @@
         <div class='item-container-content'>
             <label class='item'>
                 miner
-                <input id='miner' type='radio' name='car-type' value='0' class='item-radio' onclick='changeIcon(this);' checked>
+                <input id='miner' type='radio' name='car-type' value='0' class='item-radio' checked>
             </label>
             <label class='item'>
                 eins
-                <input id='eins' type='radio' name='car-type' value='1' onclick='changeIcon(this);' class='item-radio'>
+                <input id='bug' type='radio' name='car-type' value='1' class='item-radio'>
             </label>
             <label class='item'>
                 topo
-                <input id='topo' type='radio' name='car-type' value='2' onclick='changeIcon(this);' class='item-radio'>
+                <input id='toppo' type='radio' name='car-type' value='2' class='item-radio'>
             </label>
         </div>
-        <img id='miner-img' src='img/miner.png' class='weather-img'>
-        <img id='eins-img' src='img/eins.png' class='weather-img'>
-        <img id='topo-img' src='img/topo.png' class='weather-img'>
         <div class='item-container-footer'>
             This radiobutton change the weather icon.<br/>
             This configure is Pebble Time only.
@@ -116,13 +106,7 @@
     }
     return defaultValue || false;
   }
-  function changeIcon(elem){
-      document.getElementById("miner-img").style.display="none";
-      document.getElementById("eins-img").style.display="none";
-      document.getElementById("topo-img").style.display="none";
-      var carType = getRadioValue('car-type');
-      document.getElementById(elem.id+"-img").style.display="block";
-  }
+ 
   var submitButton = document.getElementById('submit_button');
   submitButton.addEventListener('click', function() {
     console.log('Submit');
