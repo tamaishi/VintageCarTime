@@ -14,12 +14,31 @@
     color: #888888;
     text-align: center;
   }
+  .weather-img,.face-img,#bottom-img{
+      width:80%;
+      margin:auto;
+  }
   .weather-img,.face-img{
-      width:100%;
       display:none;
   }
-  #miner-img,#outer-color-black-img{
+  #bottom-img{
       display:block;
+  }
+
+  #miner-img,#outer-color-black-img,#outer-color-black-round-img{
+      display:block;
+  }
+  .table-outer{
+      display:table;
+      width:80%;
+      margin:auto;
+      
+  }
+  .two-column{
+      width:50%;
+      margin:0;
+      padding:0;
+      display:table-cell;
   }
   </style>
   </head>
@@ -47,10 +66,6 @@
                 <input id='outer-color-black-white' type='radio' name='outer-color' value='3' class='item-radio' onclick='changeIcon(this);'>
             </label>
         </div>
-        <img id='outer-color-black-img' src='img/roundtype1face.png' class='face-img'>
-        <img id='outer-color-white-img' src='img/roundtype2face.png' class='face-img'>
-        <img id='outer-color-black-silver-img' src='img/roundtype3face.png' class='face-img'>
-        <img id='outer-color-black-white-img' src='img/roundtype4face.png' class='face-img'>
         <div class='item-container-footer'>
             This radiobutton change the speedometer back ground color.
         </div>
@@ -71,16 +86,35 @@
                 <input id='topo' type='radio' name='car-type' value='2' onclick='changeIcon(this);' class='item-radio'>
             </label>
         </div>
-        <img id='miner-img' src='img/miner.png' class='weather-img'>
-        <img id='eins-img' src='img/eins.png' class='weather-img'>
-        <img id='topo-img' src='img/topo.png' class='weather-img'>
         <div class='item-container-footer'>
             This radiobutton change the weather icon.<br/>
             This configure is Pebble Time only.
         </div>
     </div>
-
     <div class='item-container'>
+        <div class='item-container-header'>PREVIEW</div>
+        <div class='table-outer'>
+            <div class='two-column'>
+                <div class='item-container-header'>PEBBLE TIME</div>
+                <img id='outer-color-black-img' src='img/timetype1face.png' class='face-img'>
+                <img id='outer-color-white-img' src='img/timetype2face.png' class='face-img'>
+                <img id='outer-color-black-silver-img' src='img/timetype3face.png' class='face-img'>
+                <img id='outer-color-black-white-img' src='img/timetype4face.png' class='face-img'>
+                <img id='miner-img' src='img/miner.png' class='weather-img'>
+                <img id='eins-img' src='img/eins.png' class='weather-img'>
+                <img id='topo-img' src='img/topo.png' class='weather-img'>
+                <img id='bottom-img' src='img/timebottom.png'>
+            </div>
+            <div class='two-column'>
+                <div class='item-container-header'>PEBBLE TIME ROUND</div>
+                <img id='outer-color-black-round-img' src='img/roundtype1face.png' class='face-img'>
+                <img id='outer-color-white-round-img' src='img/roundtype2face.png' class='face-img'>
+                <img id='outer-color-black-silver-round-img' src='img/roundtype3face.png' class='face-img'>
+                <img id='outer-color-black-white-round-img' src='img/roundtype4face.png' class='face-img'>
+            </div>
+        </div>
+   </div>
+   <div class='item-container'>
       <div class='button-container'>
         <input id='submit_button' type='button' class='item-button' value='SAVE'>
       </div>
@@ -126,6 +160,11 @@
           document.getElementById('outer-color-white-img').style.display="none";
           document.getElementById('outer-color-black-silver-img').style.display="none";
           document.getElementById('outer-color-black-white-img').style.display="none";
+          document.getElementById('outer-color-black-round-img').style.display="none";
+          document.getElementById('outer-color-white-round-img').style.display="none";
+          document.getElementById('outer-color-black-silver-round-img').style.display="none";
+          document.getElementById('outer-color-black-white-round-img').style.display="none";
+          document.getElementById(elem.id+"-round-img").style.display="block";
       }else if(elem.name==='car-type'){
         document.getElementById("miner-img").style.display="none";
         document.getElementById("eins-img").style.display="none";
