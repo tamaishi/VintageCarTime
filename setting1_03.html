@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Vintage Car Time Configuration</title>
+  <link rel='stylesheet' type='text/css' href='css/slate.min.css'>
+  <script src='js/slate.min.js'></script>
+  <style>
+  .title {
+    padding: 15px 10px;
+    text-transform: uppercase;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 1.2em;
+    font-weight: 500;
+    color: #888888;
+    text-align: center;
+  }
+  .weather-img,.face-img,#bottom-img{
+      width:80%;
+      margin:auto;
+  }
+  .weather-img,.face-img{
+      display:none;
+  }
+  #bottom-img{
+      display:block;
+  }
+
+  #miner-img,#outer-color-black-img,#outer-color-black-round-img,
+  #miner-time2-img,#outer-color-black-time2-img{
+      display:block;
+  }
+  .table-outer{
+      display:table;
+      width:100%;
+      margin:auto;
+      
+  }
+  .three-column{
+      width:33%;
+      margin:0;
+      padding:0;
+      display:table-cell;
+  }
+  </style>
+  </head>
+
+  <body>
+    <h1 class='title'>Vintage Car Time Configuration</h1>
+
+    <div class='item-container'>
+        <div class='item-container-header'>Back Ground Color</div>
+        <div class='item-container-content'>
+            <label class='item'>
+                Black
+                <input id='outer-color-black' type='radio' name='outer-color' value='0' class='item-radio'  onclick='changeIcon(this);' checked>
+            </label>
+            <label class='item'>
+                White
+                <input id='outer-color-white' type='radio' name='outer-color' value='1' class='item-radio' onclick='changeIcon(this);'>
+            </label>
+            <label class='item'>
+                Black-Silver
+                <input id='outer-color-black-silver' type='radio' name='outer-color' value='2' class='item-radio' onclick='changeIcon(this);'>
+            </label>
+            <label class='item'>
+                Black-White
+                <input id='outer-color-black-white' type='radio' name='outer-color' value='3' class='item-radio' onclick='changeIcon(this);'>
+            </label>
+        </div>
+        <div class='item-container-footer'>
+            This radiobutton change the speedometer back ground color.
+        </div>
+    </div>
+    <div class='item-container'>
+        <div class='item-container-header'>Weather Car type</div>
+        <div class='item-container-content'>
+            <label class='item'>
+                miner
+                <input id='miner' type='radio' name='car-type' value='0' class='item-radio' onclick='changeIcon(this);' checked>
+            </label>
+            <label class='item'>
+                eins
+                <input id='eins' type='radio' name='car-type' value='1' onclick='changeIcon(this);' class='item-radio'>
+            </label>
+            <label class='item'>
+                topo
+                <input id='topo' type='radio' name='car-type' value='2' onclick='changeIcon(this);' class='item-radio'>
+            </label>
+        </div>
+        <div class='item-container-footer'>
+            This radiobutton change the weather icon.<br/>
+            This element can not configration in Pebble Time Round.
+        </div>
+    </div>
+    <div class='item-container'>
+        <div class='item-container-header'>PREVIEW</div>
+        <div class='table-outer'>
+            <div class='three-column'>
+                <div class='item-container-header'>PEBBLE TIME</div>
+                <img id='outer-color-black-img' src='img/timetype1face.png' class='face-img'>
+                <img id='outer-color-white-img' src='img/timetype2face.png' class='face-img'>
+                <img id='outer-color-black-silver-img' src='img/timetype3face.png' class='face-img'>
+                <img id='outer-color-black-white-img' src='img/timetype4face.png' class='face-img'>
+                <img id='miner-img' src='img/miner.png' class='weather-img'>
+                <img id='eins-img' src='img/eins.png' class='weather-img'>
+                <img id='topo-img' src='img/topo.png' class='weather-img'>
+                <img id='bottom-img' src='img/timebottom.png'>
+            </div>
+            <div class='three-column'>
+                <div class='item-container-header'>PEBBLE TIME ROUND</div>
+                <img id='outer-color-black-round-img' src='img/roundtype1face.png' class='face-img'>
+                <img id='outer-color-white-round-img' src='img/roundtype2face.png' class='face-img'>
+                <img id='outer-color-black-silver-round-img' src='img/roundtype3face.png' class='face-img'>
+                <img id='outer-color-black-white-round-img' src='img/roundtype4face.png' class='face-img'>
+            </div>
+            <div class='three-column'>
+                <div class='item-container-header'>PEBBLE TIME2</div>
+                <img id='outer-color-black-time2-img' src='img/time2type1face.png' class='face-img'>
+                <img id='outer-color-white-time2-img' src='img/time2type2face.png' class='face-img'>
+                <img id='outer-color-black-silver-time2-img' src='img/time2type3face.png' class='face-img'>
+                <img id='outer-color-black-white-time2-img' src='img/time2type4face.png' class='face-img'>
+                <img id='miner-time2-img' src='img/miner_time2.png' class='weather-img'>
+                <img id='eins-time2-img' src='img/eins_time2.png' class='weather-img'>
+                <img id='topo-time2-img' src='img/topo_time2.png' class='weather-img'>
+                <img id='bottom-img' src='img/time2bottom.png'>
+            </div>
+            
+        </div>
+   </div>
+   <div class='item-container'>
+      <div class='button-container'>
+        <input id='submit_button' type='button' class='item-button' value='SAVE'>
+      </div>
+    </div>
+  </body>
+  <script>
+ function getConfigData() {
+    var options = {
+      'background_color': getRadioValue('outer-color'),
+      'car_type': getRadioValue('car-type')
+    };
+    // Save for next launch
+    localStorage['background_color'] = options['background_color'];
+    
+    console.log('Got options: ' + JSON.stringify(options));
+    return options;
+  }
+  function getRadioValue(radioName){
+    var radioList=document.getElementsByName(radioName);
+    var returnStr='0';
+    for(var i=0; i<radioList.length; i++){
+        if (radioList[i].checked) {
+            returnStr = radioList[i].value;
+            break;
+        }
+    }
+    return returnStr;
+  }
+  function getQueryParam(variable, defaultValue) {
+    var query = location.search.substring(1);
+    var vars = query.split('&');
+    for (var i = 0; i < vars.length; i++) {
+      var pair = vars[i].split('=');
+      if (pair[0] === variable) {
+        return decodeURIComponent(pair[1]);
+      }
+    }
+    return defaultValue || false;
+  }
+  function changeIcon(elem){
+      if(elem.name==='outer-color'){
+          document.getElementById('outer-color-black-img').style.display="none";
+          document.getElementById('outer-color-white-img').style.display="none";
+          document.getElementById('outer-color-black-silver-img').style.display="none";
+          document.getElementById('outer-color-black-white-img').style.display="none";
+          document.getElementById('outer-color-black-round-img').style.display="none";
+          document.getElementById('outer-color-white-round-img').style.display="none";
+          document.getElementById('outer-color-black-silver-round-img').style.display="none";
+          document.getElementById('outer-color-black-white-round-img').style.display="none";
+          document.getElementById('outer-color-black-time2-img').style.display="none";
+          document.getElementById('outer-color-white-time2-img').style.display="none";
+          document.getElementById('outer-color-black-silver-time2-img').style.display="none";
+          document.getElementById('outer-color-black-white-time2-img').style.display="none";
+          document.getElementById(elem.id+"-round-img").style.display="block";
+          document.getElementById(elem.id+"-time2-img").style.display="block";
+      }else if(elem.name==='car-type'){
+          document.getElementById("miner-img").style.display="none";
+          document.getElementById("eins-img").style.display="none";
+          document.getElementById("topo-img").style.display="none";
+          document.getElementById("miner-time2-img").style.display="none";
+          document.getElementById("eins-time2-img").style.display="none";
+          document.getElementById("topo-time2-img").style.display="none";
+          document.getElementById(elem.id+"-time2-img").style.display="block";
+      }
+      document.getElementById(elem.id+"-img").style.display="block";
+  }
+  var submitButton = document.getElementById('submit_button');
+  submitButton.addEventListener('click', function() {
+    console.log('Submit');
+
+    // Set the return URL depending on the runtime environment
+    var return_to = getQueryParam('return_to', 'pebblejs://close#');
+    document.location = return_to + encodeURIComponent(JSON.stringify(getConfigData()));
+  });
+
+  (function() {
+    var backgroundColorPicker = document.getElementById('background_color_picker');
+    var highContrastCheckbox = document.getElementById('high_contrast_checkbox');
+
+    // Load any previously saved configuration, if available
+    if(localStorage['high_contrast']) {
+      highContrastCheckbox.checked = JSON.parse(localStorage['high_contrast']);
+      backgroundColorPicker.value = localStorage['background_color'];
+    }
+  })();
+  </script>
+</html>
